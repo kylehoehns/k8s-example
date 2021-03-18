@@ -1,0 +1,23 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: uppercase
+spec:
+  selector:
+    matchLabels:
+      app: names
+      tier: backend
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: names
+        tier: backend
+    spec:
+      containers:
+      - name: uppercase
+        image: docker.io/library/uppercase:0.0.1-SNAPSHOT
+        ports:
+          - name: http
+            containerPort: 8081
